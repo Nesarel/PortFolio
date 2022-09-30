@@ -1,0 +1,36 @@
+.add{
+    position: fixed;
+    top: -40px; 
+    left:-40px;
+    width : 80px; 
+    height: 80px;
+    border-radius: 50%;
+    font-size: 30px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.543);
+    transition: all 0.3s ease;
+}
+
+.add:hover{
+    transform: scale(1.5);
+    top: -10px; 
+    left:-10px;
+}
+
+li{
+    list-style: none;
+    background: blue;
+    text-align: center;
+    margin: 5px;
+    padding: 4px;
+    /* border: 5px solid red; */
+}
+
+ul{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
