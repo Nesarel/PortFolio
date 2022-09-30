@@ -20,7 +20,7 @@ app.get('/template/:id', async (req, res) => {
 
 app.post("/template", async (req, res) => { 
     console.log();
-    if(!req.body.title || !req.body.data || !req.body.user_id || !req.body.token){
+    if(!req.body.title || !req.body.user_id || !req.body.token){
         res.status(400).json({error: "title, data, pseudo and token is required "});
         return;
     }

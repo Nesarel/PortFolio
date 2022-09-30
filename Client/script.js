@@ -65,6 +65,7 @@
 const api = 'http://localhost:3000/template';
 const list = document.querySelector('ul');
 const buttonAdd = document.getElementById('post_add_btn');
+let tabTemplate = [];
 
 
 /**
@@ -75,8 +76,16 @@ const buttonAdd = document.getElementById('post_add_btn');
  */
 async function getAPI(url) {
     const res = await fetch(url);
-    return await res.json();
+    const data = await res.json();
+    tabTemplate = data;
+    displayData(tabTemplate);
 }
+
+function displayData(tabData){
+    console.log(tabData);
+}
+
+getAPI(api);
 
 /**
  * postData permet d'effectuer un post avec un contenu dans un body pour l'insérer dans la BDD
@@ -105,10 +114,10 @@ window.onclick = async e => {
     /* Si l'élément cliqué possède la class save, alors faire action ci-dessou */
     if(e.target.classList.contains('save')){
         const li = e.target.parentElement
-        const title = li.querySelector('h3').innerText
-      /*const post = {title, body}
-        posts = [post,...posts]
-        window.localStorage.setItem('posts', JSON.stringify(posts))*/
+        // const title = li.querySelector('h3').innerText
+        // const template = {title, body}
+        // tabTemplate = [template,...template]
+        // window.localStorage.setItem('posts', JSON.stringify(posts))
 
         // Retire l'attribut contentEditable qui permet de  modifier le titre
         li.querySelector('h3').removeAttribute('contentEditable')
@@ -164,3 +173,36 @@ function addTemplate (){
     <button class='delete btn'>Remove</button>
     <button class='save btn'>💾</button></li>` +  list.innerHTML
 }
+
+function postTemplate(title, UID){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+    "title": title,
+    "data": "@",
+    "user_id": UID,
+    "token": "1342dzqzd34232342678987654"
+    });
+
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/template", requestOptions)
+    .then(response => response.json())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+}
+
+function generateUIDToken(){
+    const UID = Math.random();
+    window.localStorage.setItem("idMachine", UID)
+}
+
+// generateUIDToken();
+const idMachine = window.localStorage.getItem("idMachine");
+postTemplate("Titre", idMachine);
