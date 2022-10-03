@@ -4,8 +4,8 @@
   "description": "BDD login + template with text input",
   "main": "index.js",
   "scripts": {
-    "start": "node ./Server/index.js",
-    "dev": "nodemon ./Server/index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Nesarel",
   "license": "UNLICENSED",
