@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require("cors");
 const {getTemplate, getOneTemplate, createTemplate, deleteTemplate} = require("./sql");
-// test
+
 const app = express()
 const port = 3000
 
